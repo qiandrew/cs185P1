@@ -4,26 +4,53 @@
     <link rel="stylesheet" href="styles.css">
     <title>Andrew Qi</title>
 </head>
-<body>
+<body onscroll=scroll();>
+<button id="scroll" onclick = returnToTop()>Return To Top</button>
+<div id="overlay" onclick="off()" style="text-align: center;"></div>
 <h1>
     <ul>
-        <li><a href="text.html">Text</a></li>
+        <li><a href="index.html">Text</a></li>
         <li><a href="image.html">Image</a></li>
-        <li><a href="video.html">Video</a></li>
+        <li style="background-color:grey;"><a href="video.html">Video</a></li>
         <li><a href="table.html">Table</a></li>
+        <li><a href="email.html">Email</a></li>
     </ul>
 </h1>
-<p>
-    <video controls>
-        <source src="videos/a.mp4">
-    </video>
-    <video controls>
-        <source src="videos/b.mp4">
-    </video>
-    <video controls>
-        <source src="videos/c.mp4">
-    </video>
-</p>
+<main>
+    <div class=videoContainer>
+        <div class=video onclick=on("videos/a.mp4")><video>
+            <source src="videos/a.mp4">
+        </video></div>
+        <div class=video onclick=on("videos/b.mp4")><video>
+            <source src="videos/b.mp4">
+        </video></div>
+        <div class=video onclick=on("videos/c.mp4")><video>
+            <source src="videos/c.mp4">
+        </video></div>
+    </div>
+</main>
+<script>
+    function scroll(){
+        if(document.body.scrollTop/document.body.offsetHeight > 0.25 || document.documentElement.scrollTop/document.documentElement.offsetHeight > 0.25){
+            document.getElementById("scroll").style.display = "block";
+        }
+        else{
+            document.getElementById("scroll").style.display = "none";
+        }
+    }
+    function returnToTop(){
+        document.getElementById("scroll").style.display = "none";
+        document.body.scrollTop=0;
+        document.documentElement.scrollTop=0;
+    }
+    function on(img){
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("overlay").innerHTML = "<div class=video style=\"height:80%; width:80%; object-fit:cover; margin:auto; margin-top:5%;\"><video controls><source src="+ img +"></video></div>"
+    }
+    function off(){
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
 <p>All videos are public domain images or CC0 1.0.</p>
 </body>
 </html> 

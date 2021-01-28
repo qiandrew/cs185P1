@@ -4,23 +4,52 @@
     <link rel="stylesheet" href="styles.css">
     <title>Andrew Qi</title>
 </head>
-<body>
+<body onscroll=scroll();>
+<button id="scroll" onclick = returnToTop()>Return To Top</button>
+<div id="overlay" onclick="off()" style="text-align: center;"></div>
 <h1>
-    <ul>
-        <li><a href="text.html">Text</a></li>
-        <li><a href="image.html">Image</a></li>
-        <li><a href="video.html">Video</a></li>
-        <li><a href="table.html">Table</a></li>
-    </ul>
+    <nav>
+        <ul>
+            <li><a href="index.html">Text</a></li>
+            <li style="background-color:grey;"><a href="image.html">Image</a></li>
+            <li><a href="video.html">Video</a></li>
+            <li><a href="table.html">Table</a></li>
+            <li><a href="email.html">Email</a></li>
+        </ul>
+        </nav>
 </h1>
-<p>
-    <img src="images/a.jpg" alt="Flower A">
-    <img src="images/b.jpg" alt="Flower B">
-    <img src="images/c.jpg" alt="Flower C">
-    <img src="images/d.jpg" alt="Flower D">
-    <img src="images/e.jpg" alt="Flower E">
-    <img src="images/f.jpg" alt="Flower F">
-</p>
+<main>
+    <div class="imageContainer">
+        <div class="image"><img src="images/a.jpg" onclick=on("images/a.jpg") alt="Flower A"></div>
+        <div class="image"><img src="images/b.jpg" onclick=on("images/b.jpg") alt="Flower B"></div>
+        <div class="image"><img src="images/c.jpg" onclick=on("images/c.jpg") alt="Flower C"></div>
+        <div class="image"><img src="images/d.jpg" onclick=on("images/d.jpg") alt="Flower D"></div>
+        <div class="image"><img src="images/e.jpg" onclick=on("images/e.jpg") alt="Flower E"></div>
+        <div class="image"><img src="images/f.jpg" onclick=on("images/f.jpg") alt="Flower F"></div>
+    </div>
+</main>
 <p>All images are public domain images or CC0 1.0.</p>
+<script> 
+    function scroll(){
+        if(document.body.scrollTop/document.body.offsetHeight > 0.25 || document.documentElement.scrollTop/document.documentElement.offsetHeight > 0.25){
+            document.getElementById("scroll").style.display = "block";
+        }
+        else{
+            document.getElementById("scroll").style.display = "none";
+        }
+    }
+    function returnToTop(){
+        document.getElementById("scroll").style.display = "none";
+        document.body.scrollTop=0;
+        document.documentElement.scrollTop=0;
+    }
+    function on(img){
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("overlay").innerHTML = "<img src=" + img + " style=\"height:80%; width:80%; object-fit:cover; margin:auto; margin-top:5%;\">"
+    }
+    function off(){
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
 </body>
 </html> 

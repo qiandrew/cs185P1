@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Andrew Qi</title>
+</head>
+<body onLoad="emailValidate();" onscroll=scroll();>
+<button id="scroll" onclick = returnToTop()>Return To Top</button>
+<h1>
+    <ul>
+        <li><a href="index.html">Text</a></li>
+        <li><a href="image.html">Image</a></li>
+        <li><a href="video.html">Video</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li style="background-color:grey;"><a href="email.html">Email</a></li>
+    </ul>
+</h1>
+<main>
+    <form name = "form" onsubmit=emailValidate()>
+        <label for="email">Enter your email:</label><br>
+        <input type="text" id="email" name="email"><br> 
+        <input type="submit" value="Submit" onclick = "emailValidate()"><br>
+    </form>
+    <p id="emailGood"></p>
+    <script> 
+        function scroll(){
+            if(document.body.scrollTop/document.body.offsetHeight > 0.25 || document.documentElement.scrollTop/document.documentElement.offsetHeight > 0.25){
+                document.getElementById("scroll").style.display = "block";
+            }
+            else{
+                document.getElementById("scroll").style.display = "none";
+            }
+        }
+        function returnToTop(){
+            document.getElementById("scroll").style.display = "none";
+            document.body.scrollTop=0;
+            document.documentElement.scrollTop=0;
+        }
+        function emailValidate(){
+            email = window.location.search.substring(7);
+            if(email == ""){
+                return;
+            }
+            document.getElementById("emailGood").innerHTML = email;
+            var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+%40[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if(email.match(validRegex)){
+                document.getElementById("emailGood").innerHTML = "Email successfully recorded";
+            }
+            else{
+                document.getElementById("emailGood").innerHTML = "Invalid Email Address";
+            }
+        }
+    </script>
+</main>
+</body>
+</html> 
